@@ -1,2 +1,3 @@
-# ekagaku_raspi_library
-当会（e-kagaku）のRasPi講座における教材の一部であり、受講生を対象に配布しているライブラリである。
+# e-kagaku Raspi Library
+
+このライブラリは、e-kagakuアカデミー（以下、当会）のSTEAMコース専門課程RasPi講座の教材であり、その権利は株式会社サイエンス・ラボに帰属するものである。

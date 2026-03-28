@@ -12,7 +12,7 @@ import RPi.GPIO as GPIO
 import time
 
 def setup(TRIG,ECHO):
-	GPIO.setmode(GPIO.BOARD)
+	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(TRIG, GPIO.OUT)
 	GPIO.setup(ECHO, GPIO.IN)
 

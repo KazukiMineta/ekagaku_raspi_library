@@ -8,23 +8,19 @@ class MCP3008:
 
     def read(self, ch):
         """
-        Read MCP3008 channel (0-7)
-        Returns 0-1023
+        MCP3008 の単一エンド入力を読む（0〜7）
+        戻り値：0〜1023
         """
-        if ch < 0 or ch > 7:
+        if not 0 <= ch <= 7:
             raise ValueError("Channel must be 0-7")
 
-        # MCP3008 command format:
-        # Start bit(1), Single-ended(1), Channel(3)
-        cmd = 0b11 << 6 | (ch & 0b111) << 3
+        # 正しい MCP3008 コマンド
+        # [1, (8 + ch) << 4, 0]
+        r = self.spi.xfer2([1, (8 + ch) << 4, 0])
 
-        # Send 3 bytes: [cmd, 0, 0]
-        r = self.spi.xfer2([cmd, 0, 0])
-
-        # Combine result (10bit)
-        value = ((r[1] & 0x0F) << 8) | r[2]
+        # 10bit データを合成
+        value = ((r[1] & 3) << 8) | r[2]
         return value
 
     def close(self):
         self.spi.close()
-
